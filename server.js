@@ -1,8 +1,17 @@
-const http = require('http');
+const http = require("http");
+
+
 const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('content-type','text/html');
-    res.write('<h2>test</h2>')
- });
-const PORT = process.env.PORT || 5000;
-server.listen(PORT, ()=> console.log(`Server running on port ${PORT}`))
+    res.setHeader('Content-type', 'application/json');
+    let body = '';
+    req.on('data', chunk => {
+        body = body + chunk;
+    });
+    req.on('end', () => {
+        body = body ? JSON.parse(body) : {};
+    })
+});
+
+server.listen('3000', () => {
+    console.log('server listening on port 3000');
+});
