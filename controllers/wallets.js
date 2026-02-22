@@ -3,7 +3,7 @@ const { wallets, users } = require('../data/store');
 const getWallets = (req, res) => {
   res.end(JSON.stringify(wallets));
 };
-
+console.log(getWallets);
 const createWallets = (req, res, body) => {
   const userExist = users.find(u => u.id === body.userId);
 
